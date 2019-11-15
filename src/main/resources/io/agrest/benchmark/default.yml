@@ -1,5 +1,5 @@
 jdbc:
-  cayennedb:
-    url: "jdbc:derby:target/derby/cayenne;create=true"
+  db1:
+    url: "jdbc:derby:target/derby/db1;create=true"
     initialSize: 1
     username: sa

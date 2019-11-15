@@ -15,7 +15,7 @@
         <main.class>io.agrest.benchmark.Application</main.class>
 
         <agrest.version>3.4-SNAPSHOT</agrest.version>
-        <bootique.version>1.0</bootique.version>
+        <bootique.version>1.1</bootique.version>
         <junit.version>4.12</junit.version>
 
         <compiler.plugin.version>3.8.1</compiler.plugin.version>
@@ -30,7 +30,7 @@
             <dependency>
                 <groupId>io.agrest</groupId>
                 <artifactId>agrest-bom</artifactId>
-                <version>3.4-SNAPSHOT</version>
+                <version>${agrest.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -41,6 +41,20 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- Suppress built-in BQ Agrest version to control the version explicitly -->
+            <dependency>
+                <groupId>io.bootique.agrest</groupId>
+                <artifactId>bootique-agrest</artifactId>
+                <version>${bootique.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.agrest</groupId>
+                        <artifactId>agrest</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
             <dependency>
                 <groupId>org.apache.derby</groupId>
                 <artifactId>derby</artifactId>
@@ -51,6 +65,7 @@
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -59,6 +74,10 @@
         <dependency>
             <groupId>io.bootique.jersey</groupId>
             <artifactId>bootique-jersey</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.bootique.agrest</groupId>
+            <artifactId>bootique-agrest</artifactId>
         </dependency>
         <dependency>
             <groupId>io.agrest</groupId>

@@ -2,9 +2,10 @@ package io.agrest.benchmark;
 
 import com.google.inject.Binder;
 import com.google.inject.Module;
-import io.agrest.benchmark.api.CayenneApi;
+import io.agrest.benchmark.api.ArtistApi;
 import io.bootique.BQCoreModule;
 import io.bootique.Bootique;
+import io.bootique.cayenne.CayenneModule;
 import io.bootique.jersey.JerseyModule;
 
 public class Application implements Module {
@@ -19,6 +20,7 @@ public class Application implements Module {
     @Override
     public void configure(Binder binder) {
         BQCoreModule.extend(binder).addConfig("classpath:io/bootique/benchmark/default.yml");
-        JerseyModule.extend(binder).addResource(CayenneApi.class);
+        CayenneModule.extend(binder).addProject("io/agrest/benchmark/cayenne-project.xml");
+        JerseyModule.extend(binder).addResource(ArtistApi.class);
     }
 }
