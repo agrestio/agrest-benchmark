@@ -2,7 +2,7 @@ package io.agrest.benchmark;
 
 import com.google.inject.Binder;
 import com.google.inject.Module;
-import io.agrest.benchmark.api.ArtistApi;
+import io.agrest.benchmark.api.cayenne.ArtistApi;
 import io.bootique.BQCoreModule;
 import io.bootique.Bootique;
 import io.bootique.cayenne.CayenneModule;

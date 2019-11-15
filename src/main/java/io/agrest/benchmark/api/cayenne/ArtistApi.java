@@ -1,4 +1,4 @@
-package io.agrest.benchmark.api;
+package io.agrest.benchmark.api.cayenne;
 
 import io.agrest.Ag;
 import io.agrest.DataResponse;
@@ -12,7 +12,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
-@Path("artist")
+@Path("cayenne/artist")
 @Produces(MediaType.APPLICATION_JSON)
 public class ArtistApi {
 

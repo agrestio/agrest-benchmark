@@ -1,4 +1,6 @@
-# `agrest-benchmark` - a project to test Agrest framework performance
+# `agrest-benchmark` tests relative performance of the Agrest framework
+
+
 
 
 
