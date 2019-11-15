@@ -19,7 +19,7 @@ public class Application implements Module {
 
     @Override
     public void configure(Binder binder) {
-        BQCoreModule.extend(binder).addConfig("classpath:io/bootique/benchmark/default.yml");
+        BQCoreModule.extend(binder).addConfig("classpath:io/agrest/benchmark/default.yml");
         CayenneModule.extend(binder).addProject("io/agrest/benchmark/cayenne-project.xml");
         JerseyModule.extend(binder).addResource(ArtistApi.class);
     }

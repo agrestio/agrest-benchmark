@@ -1,5 +1,13 @@
 jdbc:
   db1:
-    url: "jdbc:derby:target/derby/db1;create=true"
-    initialSize: 1
+    jdbcUrl: "jdbc:derby:target/derby/db1;create=true"
+    minimumIdle: 1
+    maximumPoolSize: 20
     username: sa
+
+cayenne:
+  createSchema: true
+
+jetty:
+  connectors:
+    - port: 11000
