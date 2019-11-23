@@ -26,7 +26,7 @@ jdbc:
 Build and run the benchmark:
 ```
 mvn clean package
-java -jar agrest-benchmark-**.jar -s -c mysql.yml
+java -jar target/agrest-benchmark-*.jar -s -c mysql.yml
 ```
 Start Locust:
 ```
