@@ -5,29 +5,90 @@
 	 project-version="9">
 	<property name="defaultPackage" value="io.agrest.benchmark.db1"/>
 	<property name="quoteSqlIdentifiers" value="true"/>
-	<db-entity name="artist">
-		<db-attribute name="date_of_birth" type="DATE"/>
-		<db-attribute name="id" type="BIGINT" isPrimaryKey="true" isMandatory="true"/>
-		<db-attribute name="name" type="VARCHAR" length="200"/>
+	<db-entity name="art_object" catalog="met">
+		<db-attribute name="city" type="VARCHAR" length="300"/>
+		<db-attribute name="country" type="VARCHAR" length="300"/>
+		<db-attribute name="culture" type="VARCHAR" length="300"/>
+		<db-attribute name="date" type="VARCHAR" length="300"/>
+		<db-attribute name="department_id" type="BIGINT" length="19"/>
+		<db-attribute name="excavation" type="VARCHAR" length="300"/>
+		<db-attribute name="external_id" type="VARCHAR" length="200"/>
+		<db-attribute name="id" type="BIGINT" isPrimaryKey="true" isGenerated="true" isMandatory="true" length="19"/>
+		<db-attribute name="locale" type="VARCHAR" length="300"/>
+		<db-attribute name="locus" type="VARCHAR" length="300"/>
+		<db-attribute name="medium" type="VARCHAR" length="2000"/>
+		<db-attribute name="period" type="VARCHAR" length="300"/>
+		<db-attribute name="public_domain" type="BIT" length="1"/>
+		<db-attribute name="region" type="VARCHAR" length="300"/>
+		<db-attribute name="title" type="VARCHAR" length="1000"/>
+		<db-attribute name="type" type="VARCHAR" length="300"/>
+		<db-attribute name="url" type="VARCHAR" length="300"/>
 	</db-entity>
-	<db-entity name="painting">
-		<db-attribute name="artist_id" type="BIGINT" isMandatory="true"/>
-		<db-attribute name="id" type="BIGINT" isPrimaryKey="true" isMandatory="true"/>
-		<db-attribute name="price" type="DOUBLE"/>
+	<db-entity name="artist" catalog="met">
+		<db-attribute name="bio" type="VARCHAR" length="1000"/>
+		<db-attribute name="birth_year" type="INTEGER" length="10"/>
+		<db-attribute name="death_year" type="INTEGER" length="10"/>
+		<db-attribute name="id" type="BIGINT" isPrimaryKey="true" isGenerated="true" isMandatory="true" length="19"/>
+		<db-attribute name="name" type="VARCHAR" length="300"/>
+		<db-attribute name="nationality" type="VARCHAR" length="200"/>
+		<db-attribute name="suffix" type="VARCHAR" length="1000"/>
 	</db-entity>
+	<db-entity name="artist_art_object" catalog="met">
+		<db-attribute name="art_object_id" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
+		<db-attribute name="artist_id" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
+	</db-entity>
+	<db-entity name="department" catalog="met">
+		<db-attribute name="id" type="BIGINT" isPrimaryKey="true" isGenerated="true" isMandatory="true" length="19"/>
+		<db-attribute name="name" type="VARCHAR" length="300"/>
+	</db-entity>
+	<obj-entity name="ArtObject" className="io.agrest.benchmark.db1.ArtObject" dbEntityName="art_object">
+		<obj-attribute name="city" type="java.lang.String" db-attribute-path="city"/>
+		<obj-attribute name="country" type="java.lang.String" db-attribute-path="country"/>
+		<obj-attribute name="culture" type="java.lang.String" db-attribute-path="culture"/>
+		<obj-attribute name="date" type="java.lang.String" db-attribute-path="date"/>
+		<obj-attribute name="excavation" type="java.lang.String" db-attribute-path="excavation"/>
+		<obj-attribute name="externalId" type="java.lang.String" db-attribute-path="external_id"/>
+		<obj-attribute name="locale" type="java.lang.String" db-attribute-path="locale"/>
+		<obj-attribute name="locus" type="java.lang.String" db-attribute-path="locus"/>
+		<obj-attribute name="medium" type="java.lang.String" db-attribute-path="medium"/>
+		<obj-attribute name="period" type="java.lang.String" db-attribute-path="period"/>
+		<obj-attribute name="publicDomain" type="boolean" db-attribute-path="public_domain"/>
+		<obj-attribute name="region" type="java.lang.String" db-attribute-path="region"/>
+		<obj-attribute name="title" type="java.lang.String" db-attribute-path="title"/>
+		<obj-attribute name="type" type="java.lang.String" db-attribute-path="type"/>
+		<obj-attribute name="url" type="java.lang.String" db-attribute-path="url"/>
+	</obj-entity>
 	<obj-entity name="Artist" className="io.agrest.benchmark.db1.Artist" dbEntityName="artist">
-		<obj-attribute name="dateOfBirth" type="java.time.LocalDate" db-attribute-path="date_of_birth"/>
+		<obj-attribute name="bio" type="java.lang.String" db-attribute-path="bio"/>
+		<obj-attribute name="birthYear" type="int" db-attribute-path="birth_year"/>
+		<obj-attribute name="deathYear" type="int" db-attribute-path="death_year"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+		<obj-attribute name="nationality" type="java.lang.String" db-attribute-path="nationality"/>
+		<obj-attribute name="suffix" type="java.lang.String" db-attribute-path="suffix"/>
+	</obj-entity>
+	<obj-entity name="Department" className="io.agrest.benchmark.db1.Department" dbEntityName="department">
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
 	</obj-entity>
-	<obj-entity name="Painting" className="io.agrest.benchmark.db1.Painting" dbEntityName="painting">
-		<obj-attribute name="price" type="double" db-attribute-path="price"/>
-	</obj-entity>
-	<db-relationship name="paintings" source="artist" target="painting" toMany="true">
+	<db-relationship name="artistArtObjects" source="art_object" target="artist_art_object" toDependentPK="true" toMany="true">
+		<db-attribute-pair source="id" target="art_object_id"/>
+	</db-relationship>
+	<db-relationship name="department" source="art_object" target="department" toMany="false">
+		<db-attribute-pair source="department_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="artistArtObjects" source="artist" target="artist_art_object" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="id" target="artist_id"/>
 	</db-relationship>
-	<db-relationship name="artist" source="painting" target="artist" toMany="false">
+	<db-relationship name="artObject" source="artist_art_object" target="art_object" toMany="false">
+		<db-attribute-pair source="art_object_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="artist" source="artist_art_object" target="artist" toMany="false">
 		<db-attribute-pair source="artist_id" target="id"/>
 	</db-relationship>
-	<obj-relationship name="paintings" source="Artist" target="Painting" deleteRule="Cascade" db-relationship-path="paintings"/>
-	<obj-relationship name="artist" source="Painting" target="Artist" deleteRule="Nullify" db-relationship-path="artist"/>
+	<db-relationship name="artObjects" source="department" target="art_object" toMany="true">
+		<db-attribute-pair source="id" target="department_id"/>
+	</db-relationship>
+	<obj-relationship name="artists" source="ArtObject" target="Artist" db-relationship-path="artistArtObjects.artist"/>
+	<obj-relationship name="department" source="ArtObject" target="Department" deleteRule="Nullify" db-relationship-path="department"/>
+	<obj-relationship name="artObjects" source="Artist" target="ArtObject" db-relationship-path="artistArtObjects.artObject"/>
+	<obj-relationship name="artObjects" source="Department" target="ArtObject" deleteRule="Deny" db-relationship-path="artObjects"/>
 </data-map>
