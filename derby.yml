@@ -1,0 +1,6 @@
+jdbc:
+  db1:
+    jdbcUrl: "jdbc:derby:../data/met/derby"
+    minimumIdle: 1
+    maximumPoolSize: 20
+    username: sa
