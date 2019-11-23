@@ -85,6 +85,10 @@
             <artifactId>bootique-agrest</artifactId>
         </dependency>
         <dependency>
+            <groupId>io.bootique.jetty</groupId>
+            <artifactId>bootique-jetty-instrumented</artifactId>
+        </dependency>
+        <dependency>
             <groupId>io.bootique.jdbc</groupId>
             <artifactId>bootique-jdbc-hikaricp</artifactId>
         </dependency>
