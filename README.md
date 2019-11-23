@@ -1,4 +1,6 @@
-# `agrest-benchmark` tests relative performance of the Agrest framework
+# `agrest-benchmark`
+
+Used to find bottlenecks in Agrest code, as well as for relative performance testing between the releases.
 
 ## Dataset
 
