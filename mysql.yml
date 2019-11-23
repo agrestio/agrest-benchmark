@@ -1,7 +1,0 @@
-jdbc:
-  db1:
-    jdbcUrl: "jdbc:mysql://127.0.0.1:8306/met?connectTimeout=0&autoReconnect=true&useSSL=false"
-    username: root
-    password: root
-    minimumIdle: 1
-    maximumPoolSize: 20
