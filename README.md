@@ -12,7 +12,7 @@ Prerequisites:
 
 * Install [Locust](https://locust.io/)
 * Start the DB with the Met dataset
-* Create a YAML file with DB connection info. E.g. `mysql.yml`:
+* Create a YAML file with DB connection info outside the version controlled folder. E.g. `../mysql.yml`:
 ```
 jdbc:
   db1:
@@ -26,7 +26,7 @@ jdbc:
 Build and run the benchmark:
 ```
 mvn clean package
-java -jar target/agrest-benchmark-*.jar -s -c mysql.yml
+java -jar target/agrest-benchmark-*.jar -s -c ../mysql.yml
 ```
 Start Locust:
 ```
