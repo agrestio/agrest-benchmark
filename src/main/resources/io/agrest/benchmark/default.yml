@@ -4,3 +4,6 @@ cayenne:
 jetty:
   connectors:
     - port: 11000
+
+log:
+  level: warn

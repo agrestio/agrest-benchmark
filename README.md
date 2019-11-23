@@ -26,6 +26,8 @@ jdbc:
 Build and run the benchmark:
 ```
 mvn clean package
+
+# use "-v" to increase log verbosity level
 java -jar target/agrest-benchmark-*.jar -s -c ../mysql.yml
 ```
 Start Locust:

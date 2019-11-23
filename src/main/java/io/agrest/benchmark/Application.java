@@ -7,6 +7,7 @@ import io.bootique.BQCoreModule;
 import io.bootique.Bootique;
 import io.bootique.cayenne.CayenneModule;
 import io.bootique.jersey.JerseyModule;
+import io.bootique.meta.application.OptionMetadata;
 
 public class Application implements Module {
 
@@ -19,7 +20,11 @@ public class Application implements Module {
 
     @Override
     public void configure(Binder binder) {
-        BQCoreModule.extend(binder).addConfig("classpath:io/agrest/benchmark/default.yml");
+        BQCoreModule.extend(binder)
+                .addOption(OptionMetadata.builder("verbose").build())
+                .addConfig("classpath:io/agrest/benchmark/default.yml")
+                .mapConfigResource("verbose", "classpath:io/agrest/benchmark/verbose.yml");
+
         CayenneModule.extend(binder).addProject("io/agrest/benchmark/cayenne-project.xml");
         JerseyModule.extend(binder).addResource(ArtistApi.class);
     }
