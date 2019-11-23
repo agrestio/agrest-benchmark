@@ -28,4 +28,8 @@ Build and run the benchmark:
 mvn clean package
 java -jar agrest-benchmark-**.jar -s -c mysql.yml
 ```
-Start Locust, [open console in the browser](http://127.0.0.1:8089/) and start the test via UI.
+Start Locust:
+```
+locust -f locust/get.py
+```
+[Open Locust console in the browser](http://127.0.0.1:8089/) and start the test via UI.
