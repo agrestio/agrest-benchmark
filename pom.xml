@@ -14,7 +14,7 @@
 
         <main.class>io.agrest.benchmark.Application</main.class>
 
-        <agrest.version>3.4-SNAPSHOT</agrest.version>
+        <agrest.version>3.3</agrest.version>
         <bootique.version>1.1</bootique.version>
         <junit.version>4.12</junit.version>
 
